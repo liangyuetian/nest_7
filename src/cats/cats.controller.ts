@@ -3,6 +3,7 @@ import {
   Get,
   Header,
   HttpCode,
+  HttpStatus,
   Next,
   Param,
   Post,
@@ -16,10 +17,12 @@ import { Request } from 'express';
 export class CatsController {
   @Get()
   getHello(@Req() request: Request, @Response() response, @Next() next) {
-    // console.log(request, response);
-    setTimeout(() => {
-      next(1);
-    }, 1000);
+    response.status(HttpStatus.OK).json({
+      status: HttpStatus.OK,
+      data: {
+        name: 'cats.controller',
+      },
+    });
   }
   @Get(':id')
   getId(@Param() params) {
