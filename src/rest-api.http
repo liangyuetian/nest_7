@@ -1,0 +1,12 @@
+GET http://localhost:8942/cats/哈哈
+Accept: application/json
+
+###
+POST http://localhost:8942/cats
+Content-Type: application/json
+
+{
+  "data": {
+    "case_type": "C"
+  }
+}
