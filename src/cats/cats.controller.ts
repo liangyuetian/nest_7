@@ -11,6 +11,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
   Redirect,
   Req,
   Response,
@@ -22,24 +23,24 @@ import { ValidationPipe } from '../common/pip/validate.pipe';
 
 @Controller('cats')
 export class CatsController {
-  @Get()
-  getHello(@Req() request: Request, @Response() response, @Next() next) {
-    response.status(HttpStatus.OK).json({
-      status: HttpStatus.OK,
-      data: {
-        name: 'cats.controller',
-      },
-    });
-  }
-  @Get(':id')
-  getId(@Param() params) {
-    return `参数：${params.id}`;
-  }
-
-  @Get(':id')
-  getId2(@Param('id') id) {
-    return `id：${id}`;
-  }
+  // @Get()
+  // getHello(@Req() request: Request, @Response() response, @Next() next) {
+  //   response.status(HttpStatus.OK).json({
+  //     status: HttpStatus.OK,
+  //     data: {
+  //       name: 'cats.controller',
+  //     },
+  //   });
+  // }
+  // @Get(':id')
+  // getId(@Param() params) {
+  //   return `参数：${params.id}`;
+  // }
+  //
+  // @Get(':id')
+  // getId2(@Param('id') id) {
+  //   return `id：${id}`;
+  // }
 
   @Post()
   // @HttpCode(204)
@@ -64,6 +65,16 @@ export class CatsController {
       HttpStatus.FORBIDDEN,
     );
   }
+
+  // @Get()
+  // @UsePipes(ValidationPipe) // @UsePipes(new ValidationPipe())
+  // async create(@Query() createCatDto: CreateCatDto, @Response() res) {
+  //   // this.catsService.create(createCatDto);
+  //   console.log(createCatDto);
+  //   res.status(HttpStatus.OK).json({
+  //     message: '参数校验成功',
+  //   });
+  // }
 
   @Put()
   @UsePipes(ValidationPipe) // @UsePipes(new ValidationPipe())
