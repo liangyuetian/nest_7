@@ -16,15 +16,18 @@ import {
   Redirect,
   Req,
   Response,
+  UseGuards,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
 import { Request } from 'express';
 import { CreateCatDto } from './create-cat.dto';
+import { RolesGuard } from '../common/guard/roles.guard';
 // import { ValidationPipe } from '../common/pipe/validate.pipe';
 // import { ParseIntPipe } from '../common/pipe/parse-int.pipe';
 
 @Controller('cats')
+@UseGuards(new RolesGuard())
 export class CatsController {
   @Get()
   getHello(@Req() request: Request, @Response() response, @Next() next) {
