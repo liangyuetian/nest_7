@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Delete,
   Get,
@@ -9,11 +10,15 @@ import {
   Next,
   Param,
   Post,
+  Put,
   Redirect,
   Req,
   Response,
+  UsePipes,
 } from '@nestjs/common';
 import { Request } from 'express';
+import { CreateCatDto } from './create-cat.dto';
+import { ValidationPipe } from '../common/pip/validate.pipe';
 
 @Controller('cats')
 export class CatsController {
@@ -58,6 +63,15 @@ export class CatsController {
       },
       HttpStatus.FORBIDDEN,
     );
+  }
+
+  @Put()
+  @UsePipes(ValidationPipe) // @UsePipes(new ValidationPipe())
+  async create(@Body() createCatDto: CreateCatDto, @Response() res) {
+    // this.catsService.create(createCatDto);
+    res.status(HttpStatus.OK).json({
+      message: '参数校验成功',
+    });
   }
 }
 

@@ -20,3 +20,12 @@ Content-Type: application/json
 DELETE http://localhost:8942/cats
 Accept: application/json
 
+###
+PUT http://localhost:8942/cats
+Content-Type: application/json
+
+{
+  "name": 1,
+  "age": "1",
+  "breed": "liang"
+}
