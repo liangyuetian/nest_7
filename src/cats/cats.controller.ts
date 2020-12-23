@@ -49,7 +49,15 @@ export class CatsController {
 
   @Delete()
   delCats() {
-    throw new HttpException('不允许删除', HttpStatus.FORBIDDEN);
+    throw new HttpException(
+      {
+        response: '不允许删除',
+        // statusCode: HttpStatus.FORBIDDEN,
+        // message: '不允许删除',
+        // user_message: '不允许删除',
+      },
+      HttpStatus.FORBIDDEN,
+    );
   }
 }
 
