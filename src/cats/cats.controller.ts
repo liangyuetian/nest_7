@@ -9,6 +9,7 @@ import {
   HttpStatus,
   Next,
   Param,
+  ParseIntPipe,
   Post,
   Put,
   Query,
@@ -16,11 +17,12 @@ import {
   Req,
   Response,
   UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { Request } from 'express';
 import { CreateCatDto } from './create-cat.dto';
-import { ValidationPipe } from '../common/pipe/validate.pipe';
-import { ParseIntPipe } from '../common/pipe/parse-int.pipe';
+// import { ValidationPipe } from '../common/pipe/validate.pipe';
+// import { ParseIntPipe } from '../common/pipe/parse-int.pipe';
 
 @Controller('cats')
 export class CatsController {
