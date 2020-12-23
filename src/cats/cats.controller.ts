@@ -20,23 +20,25 @@ import {
 import { Request } from 'express';
 import { CreateCatDto } from './create-cat.dto';
 import { ValidationPipe } from '../common/pipe/validate.pipe';
+import { ParseIntPipe } from '../common/pipe/parse-int.pipe';
 
 @Controller('cats')
 export class CatsController {
-  // @Get()
-  // getHello(@Req() request: Request, @Response() response, @Next() next) {
-  //   response.status(HttpStatus.OK).json({
-  //     status: HttpStatus.OK,
-  //     data: {
-  //       name: 'cats.controller',
-  //     },
-  //   });
-  // }
-  // @Get(':id')
-  // getId(@Param() params) {
-  //   return `参数：${params.id}`;
-  // }
-  //
+  @Get()
+  getHello(@Req() request: Request, @Response() response, @Next() next) {
+    response.status(HttpStatus.OK).json({
+      status: HttpStatus.OK,
+      data: {
+        name: 'cats.controller',
+      },
+    });
+  }
+
+  @Get(':id')
+  getId(@Param('id', new ParseIntPipe()) id) {
+    return `参数类型：${typeof id}`;
+  }
+
   // @Get(':id')
   // getId2(@Param('id') id) {
   //   return `id：${id}`;
