@@ -19,7 +19,7 @@ import {
 } from '@nestjs/common';
 import { Request } from 'express';
 import { CreateCatDto } from './create-cat.dto';
-import { ValidationPipe } from '../common/pip/validate.pipe';
+import { ValidationPipe } from '../common/pipe/validate.pipe';
 
 @Controller('cats')
 export class CatsController {
