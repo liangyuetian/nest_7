@@ -26,6 +26,6 @@ Content-Type: application/json
 
 {
   "name": "1",
-  "age": "1",
+  "age": 1,
   "breed": "liang"
 }

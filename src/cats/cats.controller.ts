@@ -16,6 +16,7 @@ import {
   Redirect,
   Req,
   Response,
+  SetMetadata,
   UseGuards,
   UsePipes,
   ValidationPipe,
@@ -23,6 +24,7 @@ import {
 import { Request } from 'express';
 import { CreateCatDto } from './create-cat.dto';
 import { RolesGuard } from '../common/guard/roles.guard';
+import { Roles } from './roles.decorator';
 // import { ValidationPipe } from '../common/pipe/validate.pipe';
 // import { ParseIntPipe } from '../common/pipe/parse-int.pipe';
 
@@ -73,6 +75,16 @@ export class CatsController {
     );
   }
 
+  @Put()
+  @Roles('admin')
+  @UsePipes(ValidationPipe) // @UsePipes(new ValidationPipe())
+  async create(@Body() createCatDto: CreateCatDto, @Response() res) {
+    // this.catsService.create(createCatDto);
+    res.status(HttpStatus.OK).json({
+      message: '参数校验成功',
+    });
+  }
+
   // @Get()
   // @UsePipes(ValidationPipe) // @UsePipes(new ValidationPipe())
   // async create(@Query() createCatDto: CreateCatDto, @Response() res) {
@@ -82,15 +94,6 @@ export class CatsController {
   //     message: '参数校验成功',
   //   });
   // }
-
-  @Put()
-  @UsePipes(ValidationPipe) // @UsePipes(new ValidationPipe())
-  async create(@Body() createCatDto: CreateCatDto, @Response() res) {
-    // this.catsService.create(createCatDto);
-    res.status(HttpStatus.OK).json({
-      message: '参数校验成功',
-    });
-  }
 }
 
 // @Request()	req
