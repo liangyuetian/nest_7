@@ -1,3 +1,4 @@
+###
 GET http://localhost:8942/cats
 Accept: application/json
 
@@ -14,3 +15,8 @@ Content-Type: application/json
     "case_type": "C"
   }
 }
+
+###
+DELETE http://localhost:8942/cats
+Accept: application/json
+

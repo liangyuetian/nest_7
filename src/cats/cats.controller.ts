@@ -1,8 +1,10 @@
 import {
   Controller,
+  Delete,
   Get,
   Header,
   HttpCode,
+  HttpException,
   HttpStatus,
   Next,
   Param,
@@ -43,6 +45,11 @@ export class CatsController {
       status: 0,
       data: { name: '王闯' },
     };
+  }
+
+  @Delete()
+  delCats() {
+    throw new HttpException('不允许删除', HttpStatus.FORBIDDEN);
   }
 }
 
