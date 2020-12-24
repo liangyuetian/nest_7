@@ -18,6 +18,7 @@ import {
   Response,
   SetMetadata,
   UseGuards,
+  UseInterceptors,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
@@ -25,11 +26,13 @@ import { Request } from 'express';
 import { CreateCatDto } from './create-cat.dto';
 import { RolesGuard } from '../common/guard/roles.guard';
 import { Roles } from './roles.decorator';
+import { LoggingInterceptor } from '../common/interceptor/logging.interceptor';
 // import { ValidationPipe } from '../common/pipe/validate.pipe';
 // import { ParseIntPipe } from '../common/pipe/parse-int.pipe';
 
 @Controller('cats')
 @UseGuards(new RolesGuard())
+// @UseInterceptors(LoggingInterceptor) // 添加拦截器
 export class CatsController {
   @Get()
   getHello(@Req() request: Request, @Response() response, @Next() next) {
@@ -62,6 +65,16 @@ export class CatsController {
     };
   }
 
+  @Put()
+  @Roles('admin')
+  @UsePipes(ValidationPipe) // @UsePipes(new ValidationPipe())
+  async create(@Body() createCatDto: CreateCatDto, @Response() res) {
+    // this.catsService.create(createCatDto);
+    res.status(HttpStatus.OK).json({
+      message: 'put success',
+    });
+  }
+
   @Delete()
   delCats() {
     throw new HttpException(
@@ -73,16 +86,6 @@ export class CatsController {
       },
       HttpStatus.FORBIDDEN,
     );
-  }
-
-  @Put()
-  @Roles('admin')
-  @UsePipes(ValidationPipe) // @UsePipes(new ValidationPipe())
-  async create(@Body() createCatDto: CreateCatDto, @Response() res) {
-    // this.catsService.create(createCatDto);
-    res.status(HttpStatus.OK).json({
-      message: '参数校验成功',
-    });
   }
 
   // @Get()
