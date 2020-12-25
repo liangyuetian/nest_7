@@ -6,7 +6,7 @@ import { AuthService } from './auth.service';
 import { JwtStrategy } from './jwt.strategy';
 import { LocalStrategy } from './local.strategy';
 import { jwtConstants } from './auth.constants';
-import { GraphQLModule } from '@nestjs/graphql';
+// import { GraphQLModule } from '@nestjs/graphql';
 
 @Module({
   imports: [
@@ -16,9 +16,9 @@ import { GraphQLModule } from '@nestjs/graphql';
       secret: jwtConstants.secret,
       signOptions: { expiresIn: '60s' },
     }),
-    GraphQLModule.forRoot({
-      context: ({ req }) => ({ req }),
-    }),
+    // GraphQLModule.forRoot({
+    //   context: ({ req }) => ({ req }),
+    // }),
   ],
   providers: [AuthService, LocalStrategy, JwtStrategy],
   exports: [AuthService],
