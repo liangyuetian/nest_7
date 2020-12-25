@@ -29,3 +29,16 @@ Content-Type: application/json
   "age": 1,
   "breed": "liang"
 }
+
+### 授权
+POST http://localhost:8942/auth/login
+Content-Type: application/json
+
+{
+  "username": "john",
+  "password": "changeme"
+}
+
+### 授权
+GET http://localhost:8942/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG4iLCJzdWIiOjEsImlhdCI6MTYwODg2MTEwNCwiZXhwIjoxNjA4ODYxMTY0fQ.6Eu9vNkKvvF8CYlhDH4cm2LkiluQNasYEV_fnFrsMig
