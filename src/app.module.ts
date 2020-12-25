@@ -7,6 +7,8 @@ import {
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CatsModule } from './cats/cats.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
 import { HttpMiddleware } from './common/middleware/http.middleware';
 import { CatsController } from './cats/cats.controller';
@@ -17,7 +19,21 @@ import { LoggingInterceptor } from './common/interceptor/logging.interceptor';
 import { ExcludeNullInterceptor } from './common/interceptor/exclude.null.interceptor';
 
 @Module({
-  imports: [CatsModule, AuthModule, UsersModule],
+  imports: [
+    CatsModule,
+    AuthModule,
+    UsersModule,
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'localhost',
+      port: 3306,
+      username: 'root',
+      password: '123456',
+      database: 'l',
+      entities: [],
+      synchronize: true,
+    }),
+  ],
   controllers: [AppController],
   providers: [
     AppService,
