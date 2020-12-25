@@ -23,6 +23,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { Request } from 'express';
+import { Connection } from 'typeorm';
 import { CreateCatDto } from './create-cat.dto';
 import { RolesGuard } from '../common/guard/roles.guard';
 import { Roles } from './roles.decorator';
@@ -34,19 +35,26 @@ import { LoggingInterceptor } from '../common/interceptor/logging.interceptor';
 @UseGuards(new RolesGuard())
 // @UseInterceptors(LoggingInterceptor) // 添加拦截器
 export class CatsController {
+  constructor(private readonly connection: Connection) {}
   @Get()
-  getHello(@Req() request: Request, @Response() response, @Next() next) {
+  async getHello(@Req() request: Request, @Response() response, @Next() next) {
     response.status(HttpStatus.OK).json({
       status: HttpStatus.OK,
-      data: {
-        name: 'cats.controller',
-      },
     });
   }
 
   @Get(':id')
-  getId(@Param('id', new ParseIntPipe()) id) {
-    return `参数类型：${typeof id}`;
+  async getId(@Param('id', new ParseIntPipe()) id, @Response() response) {
+    const data = await this.connection.query('select * from T limit 1');
+
+    response.status(HttpStatus.OK).json({
+      status: HttpStatus.OK,
+      data: {
+        id: id,
+        type: typeof id,
+        list: data,
+      },
+    });
   }
 
   // @Get(':id')

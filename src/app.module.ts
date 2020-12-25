@@ -24,6 +24,7 @@ import { ExcludeNullInterceptor } from './common/interceptor/exclude.null.interc
     AuthModule,
     UsersModule,
     TypeOrmModule.forRoot({
+      // https://typeorm.io/#/connection-options
       type: 'mysql',
       host: 'localhost',
       port: 3306,
