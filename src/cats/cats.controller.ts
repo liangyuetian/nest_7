@@ -28,8 +28,10 @@ import { CreateCatDto } from './create-cat.dto';
 import { RolesGuard } from '../common/guard/roles.guard';
 import { Roles } from './roles.decorator';
 import { LoggingInterceptor } from '../common/interceptor/logging.interceptor';
+import { T } from './entity/t.entity';
 // import { ValidationPipe } from '../common/pipe/validate.pipe';
 // import { ParseIntPipe } from '../common/pipe/parse-int.pipe';
+import { APP_INTERCEPTOR } from '@nestjs/core';
 
 @Controller('cats')
 @UseGuards(new RolesGuard())
@@ -105,6 +107,20 @@ export class CatsController {
   //     message: '参数校验成功',
   //   });
   // }
+
+  @Post('add')
+  async addTColumn(@Body() body: { s: string; k: string }) {
+    // const data = await this.connection.manager.find(T);
+    const t = new T();
+    // t.ID = 802;
+    t.k = 'k1';
+    t.s = 's1';
+    const data = await this.connection.manager.save(t);
+
+    console.log(data);
+    return true;
+    // const data = await this.connection.query('select * from T limit 1');
+  }
 }
 
 // @Request()	req
