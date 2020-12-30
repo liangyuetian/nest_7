@@ -29,6 +29,14 @@ Content-Type: application/json
   "age": 1,
   "breed": "liang"
 }
+###
+POST http://localhost:8942/cats/add
+Content-Type: application/json
+
+{
+  "k": "k1",
+  "s": "s1"
+}
 
 ### 授权
 POST http://localhost:8942/auth/login
@@ -41,4 +49,9 @@ Content-Type: application/json
 
 ### 授权
 GET http://localhost:8942/profile
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG4iLCJzdWIiOjEsImlhdCI6MTYwODg2MTEwNCwiZXhwIjoxNjA4ODYxMTY0fQ.6Eu9vNkKvvF8CYlhDH4cm2LkiluQNasYEV_fnFrsMig
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MDkyMzA0NDQsImV4cCI6MTYwOTIzMDUwNH0.9XlExcwRg8jDyEOdvD6OAINOQ-uuzTF5w8DhnVsDVB4
+
+
+### 重定向
+GET http://localhost:8942/wx-redirect-uri?code=2&url=https%3A%2F%2Fbaidu.com
+

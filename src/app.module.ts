@@ -17,6 +17,7 @@ import { UsersModule } from './users/users.module';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { LoggingInterceptor } from './common/interceptor/logging.interceptor';
 import { ExcludeNullInterceptor } from './common/interceptor/exclude.null.interceptor';
+import { RedirectUriModule } from './redirect-uri/redirect-uri.module';
 
 @Module({
   imports: [
@@ -31,9 +32,11 @@ import { ExcludeNullInterceptor } from './common/interceptor/exclude.null.interc
       username: 'root',
       password: '123456',
       database: 'l',
-      entities: [],
+      entities: ['dist/**/*.entity{.ts,.js}'],
+      autoLoadEntities: true,
       synchronize: true,
     }),
+    RedirectUriModule,
   ],
   controllers: [AppController],
   providers: [
