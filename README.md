@@ -1,73 +1,41 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+### 代码风格指南
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+[代码风格指南](https://angular.cn/guide/styleguide)
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+### 请求生命周期大致如下：
 
-## Description
+1. 收到请求
+2. 全局绑定的中间件
+3. 模块绑定的中间件
+4. 全局守卫
+5. 控制层守卫
+6. 路由守卫
+7. 全局拦截器（控制器之前）
+8. 控制器层拦截器 （控制器之前）
+9. 路由拦截器 （控制器之前）
+10. 全局管道
+11. 控制器管道
+12. 路由管道 [FAQ](https://docs.nestjs.cn/7/faq)
+13. 路由参数管道
+14. 控制器（方法处理器） 15。服务（如果有）
+15. 路由拦截器（请求之后）
+16. 控制器拦截器 （请求之后）
+17. 全局拦截器 （请求之后）
+18. 异常过滤器 （路由，之后是控制器，之后是全局）
+19. 服务器响应
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+# [FAQ](https://docs.nestjs.cn/7/faq)
 
-## Installation
+1. 过滤器
+> 过滤器是唯一一个不按照全局第一顺序执行的组件。而是会从最低层次开始处理，也就是说先从任何路由绑定的过滤器开始，然后是控制器层，最后才是全局过滤器。注意，异常无法从过滤器传递到另一个过滤器；如果一个路由层过滤器捕捉到一个异常，一个控制器或者全局层面的过滤器就捕捉不到这个异常。如果要实现类似的效果可以在过滤器之间使用继承。
 
-```bash
-$ npm install
+2. 拦截器
+
+> 拦截器在大部分情况下和守卫类似。只有一种情况例外：当拦截器返回的是一个RxJS Observables时，observables是以先进后出的顺序执行的。因此，入站请求是按照标准的全局、控制器和路由层次执行的，但请求的响应侧（例如，当从一个控制器方法的处理器返回时）则是从路由到控制器再到全局。另外，由管道、控制器或者服务抛出的任何错误都可以在拦截器的catchError操作者中被读取。
+
+3. 全局路由前缀
+
+```javascript
+const app = await NestFactory.create(ApplicationModule);
+app.setGlobalPrefix('v1');
 ```
-
-## Running the app
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
