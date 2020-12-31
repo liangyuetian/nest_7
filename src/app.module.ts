@@ -1,29 +1,20 @@
-import {
-  MiddlewareConsumer,
-  Module,
-  NestModule,
-  RequestMethod,
-} from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CatsModule } from './cats/cats.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CommonModule } from './common/common.module';
 
-import { LoggerMiddleware } from './common/middleware/logger.middleware';
-import { HttpMiddleware } from './common/middleware/http.middleware';
-import { CatsController } from './cats/cats.controller';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
-import { APP_INTERCEPTOR } from '@nestjs/core';
-import { LoggingInterceptor } from './common/interceptor/logging.interceptor';
-import { ExcludeNullInterceptor } from './common/interceptor/exclude.null.interceptor';
+import { CatsModule } from './cats/cats.module';
 import { RedirectUriModule } from './redirect-uri/redirect-uri.module';
 
 @Module({
   imports: [
-    CatsModule,
+    CommonModule,
     AuthModule,
     UsersModule,
+    CatsModule,
     TypeOrmModule.forRoot({
       // https://typeorm.io/#/connection-options
       type: 'mysql',
@@ -39,19 +30,7 @@ import { RedirectUriModule } from './redirect-uri/redirect-uri.module';
     RedirectUriModule,
   ],
   controllers: [AppController],
-  providers: [
-    AppService,
-    {
-      // 添加拦截器
-      provide: APP_INTERCEPTOR,
-      useClass: LoggingInterceptor,
-    },
-    {
-      // 添加拦截器
-      provide: APP_INTERCEPTOR,
-      useClass: ExcludeNullInterceptor,
-    },
-  ],
+  providers: [AppService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
