@@ -32,9 +32,15 @@ import { T } from './entity/t.entity';
 // import { ValidationPipe } from '../common/pipe/validate.pipe';
 // import { ParseIntPipe } from '../common/pipe/parse-int.pipe';
 import { APP_INTERCEPTOR } from '@nestjs/core';
+import { ApiHeader, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('cats')
+@ApiHeader({
+  name: 'Authorization',
+  description: 'Auth token',
+})
 @Controller('cats')
-@UseGuards(new RolesGuard())
+// @UseGuards(new RolesGuard())
 // @UseInterceptors(LoggingInterceptor) // 添加拦截器
 export class CatsController {
   constructor(private readonly connection: Connection) {}
