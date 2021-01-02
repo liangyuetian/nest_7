@@ -1,32 +1,29 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { CommonModule } from './common/common.module';
-
+import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { CatsModule } from './cats/cats.module';
 import { RedirectUriModule } from './redirect-uri/redirect-uri.module';
+import { DatabaseModule } from './database/database.module';
+
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+
+import { mysqlConfig } from './config/database.config';
 
 @Module({
   imports: [
     CommonModule,
+    ConfigModule.forRoot({
+      envFilePath: ['./config/.env'],
+      isGlobal: true,
+      load: [mysqlConfig],
+    }),
+    DatabaseModule.forRoot(),
     AuthModule,
     UsersModule,
     CatsModule,
-    TypeOrmModule.forRoot({
-      // https://typeorm.io/#/connection-options
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: '123456',
-      database: 'l',
-      entities: ['dist/**/*.entity{.ts,.js}'],
-      autoLoadEntities: true,
-      synchronize: true,
-    }),
     RedirectUriModule,
   ],
   controllers: [AppController],
