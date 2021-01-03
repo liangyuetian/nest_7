@@ -5,6 +5,9 @@ GET {{host}}/swagger
 GET {{host}}/swagger/tutorials
 
 ###
+GET {{host}}/swagger/tutorials/232
+
+###
 POST {{host}}/swagger/tutorials
 Content-Type: application/json
 

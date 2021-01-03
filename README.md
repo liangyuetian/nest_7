@@ -42,7 +42,7 @@
 
 > 状态码的完全列表参见[这里](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html)
 
-# 常用校验器
+# [常用校验器](https://github.com/typestack/class-validator#validation-decorators)
 
 ## 常见的验证修饰器
 * @IsDefined(value: any)	检查是否定义了值（！= 未定义，！= null）。这是唯一忽略跳过属性选项的修饰器。

@@ -14,7 +14,6 @@ async function bootstrap() {
     .setTitle('API列表')
     .setDescription('The cats API description')
     .setVersion('1.0')
-    .addTag('cats')
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api-doc', app, document);
