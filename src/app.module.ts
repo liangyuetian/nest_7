@@ -10,15 +10,15 @@ import { DatabaseModule } from './database/database.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
+import { baseConfig } from './config/base.config';
 import { mysqlConfig } from './config/database.config';
 
 @Module({
   imports: [
     CommonModule,
     ConfigModule.forRoot({
-      envFilePath: ['./config/.env'],
       isGlobal: true,
-      load: [mysqlConfig],
+      load: [baseConfig, mysqlConfig],
     }),
     DatabaseModule.forRoot(),
     AuthModule,

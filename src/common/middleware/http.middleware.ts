@@ -1,4 +1,4 @@
 export function HttpMiddleware(req, res, next) {
-  console.log(`http`);
+  console.log(`http middleware`);
   next();
 }

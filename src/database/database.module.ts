@@ -2,7 +2,6 @@ import { DynamicModule, Global, Module } from '@nestjs/common';
 import { DatabaseController } from './database.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { mysqlConfig } from '../config/database.config';
-import { join } from 'path';
 
 @Module({})
 export class DatabaseModule {
