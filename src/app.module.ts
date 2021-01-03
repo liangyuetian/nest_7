@@ -12,6 +12,7 @@ import { AppService } from './app.service';
 
 import { baseConfig } from './config/base.config';
 import { mysqlConfig } from './config/database.config';
+import { SwaggerModule } from './swagger/swagger.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { mysqlConfig } from './config/database.config';
     UsersModule,
     CatsModule,
     RedirectUriModule,
+    SwaggerModule,
   ],
   controllers: [AppController],
   providers: [AppService],
