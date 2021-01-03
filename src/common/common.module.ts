@@ -1,7 +1,8 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { LoggingInterceptor } from './interceptor/logging.interceptor';
 import { ExcludeNullInterceptor } from './interceptor/exclude.null.interceptor';
+import { HttpMiddleware } from './middleware/http.middleware';
 
 @Module({
   providers: [
@@ -17,4 +18,9 @@ import { ExcludeNullInterceptor } from './interceptor/exclude.null.interceptor';
     },
   ],
 })
-export class CommonModule {}
+export class CommonModule implements NestModule {
+  configure(consumer: MiddlewareConsumer): any {
+    consumer.apply(HttpMiddleware);
+    consumer.apply(LoggingInterceptor);
+  }
+}
