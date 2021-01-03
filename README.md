@@ -42,6 +42,39 @@
 
 > 状态码的完全列表参见[这里](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html)
 
+# 常用校验器
+
+## 常见的验证修饰器
+* @IsDefined(value: any)	检查是否定义了值（！= 未定义，！= null）。这是唯一忽略跳过属性选项的修饰器。
+* @IsOptional()	检查给定值是否为空（= null，= 未定义），如果为，则忽略属性上的所有验证器。
+* @Equals(comparison: any)	检查值是否等于 （"+"） 比较。
+* @NotEquals(comparison: any)	检查值是否不相等 （"！="） 比较。
+* @IsEmpty()	如果给定值为空，检查是否为空值（='，=null，==未定义）。
+* @IsNotEmpty()	如果给定值不为空，则检查 （！\ '，！\ null，！ = 未定义）。
+* @IsIn(values: any[])	检查值是否位于允许值的数组中。
+* @IsNotIn(values: any[])	检查值是否不在不允许的值数组中。
+
+## 类型验证修饰器
+* @IsBoolean()	检查值是否为布尔值。
+* @IsDate()	检查该值是否为日期。
+* @IsString()	检查字符串是否为字符串。
+* @IsNumber(options: IsNumberOptions)	检查该值是否为数字。
+* @IsInt()	检查该值是否为整数数字。
+* @IsArray()	检查该值是否为数组
+* @IsEnum(entity: object)	检查该值是否为有效表示
+
+## 数字验证修饰器	
+* @IsDivisibleBy(num: number)	检查该值是否为可被另一个值除除的数字。
+* @IsPositive()	检查该值是否为大于零的正数。
+* @IsNegative()	检查该值是否为小于零的负数。
+* @Min(min: number)	检查给定数字是否大于或等于给定数字。
+* @Max(max: number)	检查给定数字是否小于或等于给定数字。
+
+## 日期验证修饰器	
+* @MinDate(date: Date)	检查该值是否为指定日期之后的日期。
+* @MaxDate(date: Date)	检查该值是否为指定日期之前的日期。
+
+
 # [FAQ](https://docs.nestjs.cn/7/faq)
 
 1. 过滤器

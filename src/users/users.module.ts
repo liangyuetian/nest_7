@@ -7,11 +7,12 @@ import {
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
+import { NameController } from './name/name.controller';
 
 @Module({
   providers: [UsersService],
   exports: [UsersService],
-  controllers: [UsersController],
+  controllers: [UsersController, NameController],
 })
 export class UsersModule
   implements

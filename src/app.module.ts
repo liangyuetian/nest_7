@@ -1,4 +1,4 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { HttpModule, MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
 import { CommonModule } from './common/common.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
@@ -16,6 +16,10 @@ import { mysqlConfig } from './config/database.config';
 @Module({
   imports: [
     CommonModule,
+    HttpModule.register({
+      timeout: 5000,
+      maxRedirects: 5,
+    }),
     ConfigModule.forRoot({
       isGlobal: true,
       load: [baseConfig, mysqlConfig],

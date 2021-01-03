@@ -1,1 +1,17 @@
+###
 GET {{host}}/users?id=99
+
+###
+GET {{host}}/users/name
+
+###
+GET {{host}}/users/name/1
+
+###
+POST {{host}}/users/name
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "小明"
+}
