@@ -1,0 +1,15 @@
+###
+GET {{host}}/swagger
+
+###
+GET {{host}}/swagger/tutorials
+
+###
+POST {{host}}/swagger/tutorials
+Content-Type: application/json
+
+{
+  "id": 0,
+  "name": "小明",
+  "email": "pt@outlook.com"
+}

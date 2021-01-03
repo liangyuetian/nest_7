@@ -8,8 +8,9 @@ import {
   Max,
   IsEmpty,
   ValidateIf,
-  IsDefined, IsOptional
-} from "class-validator";
+  IsDefined,
+  IsOptional,
+} from 'class-validator';
 import {
   ApiProperty,
   ApiPropertyOptional,
@@ -23,10 +24,10 @@ import { IsNull } from 'typeorm';
 export class UpdateNameDto {
   @IsInt()
   @Min(1, {
-    message: '不能小于1',
+    message: 'id 不能小于1',
   })
   @Max(1000000, {
-    message: '不能大于1000000',
+    message: 'id 不能大于1000000',
   })
   id: number;
 
