@@ -1,8 +1,14 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+} from '@nestjs/common';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { LoggingInterceptor } from './interceptor/logging.interceptor';
 import { ExcludeNullInterceptor } from './interceptor/exclude.null.interceptor';
 import { HttpMiddleware } from './middleware/http.middleware';
+import { LoggerMiddleware } from './middleware/logger.middleware';
 
 @Module({
   providers: [
@@ -20,7 +26,8 @@ import { HttpMiddleware } from './middleware/http.middleware';
 })
 export class CommonModule implements NestModule {
   configure(consumer: MiddlewareConsumer): any {
-    consumer.apply(HttpMiddleware);
-    consumer.apply(LoggingInterceptor);
+    consumer
+      .apply(HttpMiddleware, LoggerMiddleware)
+      .forRoutes({ path: '*', method: RequestMethod.ALL });
   }
 }
