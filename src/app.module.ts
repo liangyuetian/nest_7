@@ -29,14 +29,4 @@ import { mysqlConfig } from './config/database.config';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    // consumer.apply(LoggerMiddleware).forRoutes('*');
-    // consumer.apply(LoggerMiddleware).forRoutes({
-    //   path: '*',
-    //   method: RequestMethod.ALL,
-    // });
-    // 多个中间件
-    // consumer.apply(HttpMiddleware, LoggerMiddleware).forRoutes(CatsController);
-  }
-}
+export class AppModule {}

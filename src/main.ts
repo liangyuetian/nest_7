@@ -18,6 +18,7 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api-doc', app, document);
+
   const { port } = baseConfig();
   await app.listen(port);
   console.log(`服务地址：http://localhost:${port}`);
