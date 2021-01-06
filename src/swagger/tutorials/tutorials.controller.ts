@@ -23,7 +23,7 @@ import {
   ApiBasicAuth,
 } from '@nestjs/swagger';
 
-@ApiTags('swagger')
+@ApiTags('swagger.tutorials')
 @ApiExtension('x-foo', { hello: 'world' })
 @Controller('swagger/tutorials')
 export class TutorialsController {

@@ -1,5 +1,4 @@
 import { Controller, Get, HttpStatus, Response } from '@nestjs/common';
-import { ApiProperty } from '@nestjs/swagger';
 import { StressTestApiService } from './stress-test-api.service';
 
 @Controller('stress-test-api')
