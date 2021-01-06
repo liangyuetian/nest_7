@@ -1,0 +1,5 @@
+### 使用装饰api
+GET {{host}}/stress-test-api/set-api
+
+### 不使用装饰api
+GET {{host}}/stress-test-api/no-api
