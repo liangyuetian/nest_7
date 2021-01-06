@@ -32,7 +32,12 @@ import { T } from './entity/t.entity';
 // import { ValidationPipe } from '../common/pipe/validate.pipe';
 // import { ParseIntPipe } from '../common/pipe/parse-int.pipe';
 import { APP_INTERCEPTOR } from '@nestjs/core';
-import { ApiHeader, ApiTags } from '@nestjs/swagger';
+import {
+  ApiHeader,
+  ApiTags,
+  ApiAcceptedResponse,
+  ApiOAuth2,
+} from '@nestjs/swagger';
 
 @ApiTags('cats')
 @ApiHeader({

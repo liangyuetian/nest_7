@@ -20,6 +20,18 @@ import {
   PickType,
 } from '@nestjs/swagger';
 
+export enum UserRole {
+  Admin = 'Admin',
+  Moderator = 'Moderator',
+  User = 'User',
+}
+
+export enum RoleEnum {
+  Admin = 'Admin',
+  Moderator = 'Moderator',
+  User = 'User',
+}
+
 export class UpdateTutorialsDto {
   @ApiProperty({ description: 'id', minimum: 1, maximum: 1000000 })
   @IsInt()
@@ -43,8 +55,16 @@ export class UpdateTutorialsDto {
   })
   email: string;
 
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({
+    enum: UserRole,
+    enumName: 'UserRole',
+  })
   @IsOptional()
-  @IsArray()
-  table_of_contents: string[];
+  table_of_contents: UserRole;
+
+  /**
+   * A list of user's roles
+   * @example ['admin']
+   */
+  roles: RoleEnum[] = [];
 }

@@ -19,9 +19,12 @@ import {
   ApiTags,
   ApiBody,
   ApiParam,
+  ApiExtension,
+  ApiBasicAuth,
 } from '@nestjs/swagger';
 
 @ApiTags('swagger')
+@ApiExtension('x-foo', { hello: 'world' })
 @Controller('swagger/tutorials')
 export class TutorialsController {
   @Get()
@@ -57,6 +60,7 @@ export class TutorialsController {
   }
 
   @Post()
+  @ApiOperation({ summary: '概要' })
   @UsePipes(new ValidationPipe())
   updateTutorials(@Body() data: UpdateTutorialsDto, @Response() res) {
     res.status(HttpStatus.OK).json({
