@@ -1,8 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { HttpService, Injectable } from '@nestjs/common';
 import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class StressTestApiService {
+  constructor(private httpService: HttpService) {}
+
   getSetApiPropertyTime() {
     return of(20);
   }

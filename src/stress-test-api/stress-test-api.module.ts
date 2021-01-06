@@ -4,6 +4,6 @@ import { StressTestApiService } from './stress-test-api.service';
 
 @Module({
   controllers: [StressTestApiController],
-  providers: [StressTestApiService]
+  providers: [StressTestApiService],
 })
 export class StressTestApiModule {}
