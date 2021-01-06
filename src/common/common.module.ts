@@ -1,4 +1,6 @@
 import {
+  Global,
+  HttpModule,
   MiddlewareConsumer,
   Module,
   NestModule,
@@ -10,7 +12,14 @@ import { ExcludeNullInterceptor } from './interceptor/exclude.null.interceptor';
 import { HttpMiddleware } from './middleware/http.middleware';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 
+@Global()
 @Module({
+  imports: [
+    HttpModule.register({
+      timeout: 5000,
+      maxRedirects: 5,
+    }),
+  ],
   providers: [
     {
       // 添加拦截器
@@ -23,6 +32,7 @@ import { LoggerMiddleware } from './middleware/logger.middleware';
       useClass: ExcludeNullInterceptor,
     },
   ],
+  exports: [HttpModule],
 })
 export class CommonModule implements NestModule {
   configure(consumer: MiddlewareConsumer): any {
