@@ -13,6 +13,7 @@ import { AppService } from './app.service';
 import { baseConfig } from './config/base.config';
 import { mysqlConfig } from './config/database.config';
 import { SwaggerModule } from './swagger/swagger.module';
+import { StressTestApiModule } from './stress-test-api/stress-test-api.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { SwaggerModule } from './swagger/swagger.module';
     CatsModule,
     RedirectUriModule,
     SwaggerModule,
+    StressTestApiModule,
   ],
   controllers: [AppController],
   providers: [AppService],
