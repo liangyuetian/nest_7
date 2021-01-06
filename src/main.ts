@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { baseConfig } from './config/base.config';
 
@@ -23,4 +23,5 @@ async function bootstrap() {
   console.log(`服务地址：http://localhost:${port}`);
   console.log(`api文档地址：http://localhost:${port}/api-doc`);
 }
+
 bootstrap();
