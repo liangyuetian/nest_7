@@ -8,7 +8,7 @@ export class LocalAuthGuard extends AuthGuard('local') {
   }
 
   async validate() {
-    console.log('local.auth.guard.ts');
+    // console.log('local.auth.guard.ts');
     return true;
   }
 }

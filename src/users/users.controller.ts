@@ -10,8 +10,8 @@ import { ConfigService } from '@nestjs/config';
 @Controller('users')
 export class UsersController {
   constructor(private configService: ConfigService) {
-    console.log(this.configService.get('base.port'));
-    console.log(this.configService.get('mysql.password'));
+    // console.log(this.configService.get('base.port'));
+    // console.log(this.configService.get('mysql.password'));
   }
   @Get()
   getUser(@Response() res) {

@@ -128,7 +128,7 @@ export class CatsController {
     t.s = 's1';
     const data = await this.connection.manager.save(t);
 
-    console.log(data);
+    // console.log(data);
     return true;
     // const data = await this.connection.query('select * from T limit 1');
   }
