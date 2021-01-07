@@ -16,8 +16,8 @@ import { LoggerMiddleware } from './middleware/logger.middleware';
 @Module({
   imports: [
     HttpModule.register({
-      timeout: 5000,
-      maxRedirects: 5,
+      // timeout: 5000,
+      // maxRedirects: 5,
     }),
   ],
   providers: [
