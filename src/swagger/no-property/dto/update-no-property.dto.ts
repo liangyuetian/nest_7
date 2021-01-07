@@ -1,30 +1,14 @@
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import {
-  IsString,
-  IsInt,
-  IsArray,
-  Length,
   Contains,
-  Min,
-  Max,
-  ValidateIf,
-  IsDefined,
-  IsOptional,
   IsEmail,
+  IsInt,
+  IsOptional,
+  IsString,
+  Length,
+  Max,
+  Min,
 } from 'class-validator';
-import {
-  ApiProperty,
-  ApiPropertyOptional,
-  IntersectionType,
-  OmitType,
-  PartialType,
-  PickType,
-} from '@nestjs/swagger';
-
-export enum UserRole {
-  Admin = 'Admin',
-  Moderator = 'Moderator',
-  User = 'User',
-}
 
 export enum RoleEnum {
   Admin = 'Admin',
@@ -32,7 +16,7 @@ export enum RoleEnum {
   User = 'User',
 }
 
-export class UpdateTutorialsDto {
+export class UpdateNoPropertyDto {
   @ApiProperty({ description: 'id', minimum: 1, maximum: 1000000 })
   @IsInt()
   @Min(1, {
@@ -55,9 +39,12 @@ export class UpdateTutorialsDto {
   })
   email: string;
 
+  @IsOptional()
+  table_of_contents: [];
+
   /**
    * A list of user's roles
-   * @example ['admin']
+   * @type ['admin']
    */
   roles: RoleEnum[] = [];
 }

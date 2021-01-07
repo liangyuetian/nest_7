@@ -17,7 +17,11 @@ export class StressTestApiService {
     return new Observable((subscriber) => {
       const time = Date.now();
       this.httpService
-        .get(`http://127.0.0.1:${this.port}/swagger/tutorials`)
+        .post(`http://127.0.0.1:${this.port}/swagger/tutorials`, {
+          id: 2,
+          name: '哈哈',
+          email: 'pt_liangyue@outlook.com',
+        })
         .subscribe(() => {
           subscriber.next(Date.now() - time);
         });
@@ -25,6 +29,15 @@ export class StressTestApiService {
   }
 
   getNoApiPropertyTime() {
+    this.httpService
+      .post(`http://127.0.0.1:${this.port}/swagger/no-property`, {
+        id: 2,
+        name: '哈哈',
+        email: 'pt_liangyue@outlook.com',
+      })
+      .subscribe((res) => {
+        // console.log(11);
+      });
     return of(20);
   }
 }
