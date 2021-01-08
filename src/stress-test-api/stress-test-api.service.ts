@@ -6,7 +6,7 @@ import { delayWhen, expand, last, map, take } from 'rxjs/operators';
 @Injectable()
 export class StressTestApiService {
   port = 0;
-  take = 10000;
+  take = 100;
 
   constructor(
     private httpService: HttpService,

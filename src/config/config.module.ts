@@ -1,9 +1,25 @@
-import { Module } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import { DynamicModule, Global, Module } from '@nestjs/common';
+import { ConfigModule as OConfigModule, ConfigService } from '@nestjs/config';
+import { baseConfig } from './base.config';
+import { mysqlConfig } from './database.config';
 
+@Global()
 @Module({
-  imports: [],
+  imports: [OConfigModule],
   providers: [ConfigService],
-  exports: [ConfigService],
+  exports: [OConfigModule, ConfigService],
 })
-export class ConfigModule {}
+export class ConfigModule {
+  static forRoot(): DynamicModule {
+    return {
+      module: ConfigModule,
+      imports: [
+        OConfigModule.forRoot({
+          isGlobal: true,
+          load: [baseConfig, mysqlConfig],
+        }),
+      ],
+      exports: [OConfigModule],
+    };
+  }
+}

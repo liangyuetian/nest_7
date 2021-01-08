@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { CommonModule } from './common/common.module';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule } from './config/config.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { CatsModule } from './cats/cats.module';
@@ -18,10 +18,7 @@ import { StressTestApiModule } from './stress-test-api/stress-test-api.module';
 @Module({
   imports: [
     CommonModule,
-    ConfigModule.forRoot({
-      isGlobal: true,
-      load: [baseConfig, mysqlConfig],
-    }),
+    ConfigModule.forRoot(),
     DatabaseModule.forRoot(),
     AuthModule,
     UsersModule,
