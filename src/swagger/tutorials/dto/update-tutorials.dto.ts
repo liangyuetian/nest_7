@@ -1,24 +1,13 @@
 import {
-  IsString,
-  IsInt,
-  IsArray,
-  Length,
   Contains,
-  Min,
-  Max,
-  ValidateIf,
-  IsDefined,
-  IsOptional,
   IsEmail,
+  IsInt,
+  IsString,
+  Length,
+  Max,
+  Min,
 } from 'class-validator';
-import {
-  ApiProperty,
-  ApiPropertyOptional,
-  IntersectionType,
-  OmitType,
-  PartialType,
-  PickType,
-} from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 
 export enum UserRole {
   Admin = 'Admin',
