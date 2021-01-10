@@ -1,6 +1,5 @@
 import { DynamicModule, Global, Module } from '@nestjs/common';
 import { ConfigModule as OConfigModule, ConfigService } from '@nestjs/config';
-import { baseConfig } from './base.config';
 import { mysqlConfig } from './database.config';
 
 @Global()
@@ -11,12 +10,15 @@ import { mysqlConfig } from './database.config';
 })
 export class ConfigModule {
   static forRoot(): DynamicModule {
+    const env = process.env.NODE_ENV || 'production';
+
     return {
       module: ConfigModule,
       imports: [
         OConfigModule.forRoot({
           isGlobal: true,
-          load: [baseConfig, mysqlConfig],
+          envFilePath: [`${__dirname}/${env}.env`],
+          load: [mysqlConfig],
         }),
       ],
       exports: [OConfigModule],
