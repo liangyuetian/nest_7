@@ -12,15 +12,13 @@ import {
 } from '@nestjs/common';
 import { UpdateTutorialsDto } from './dto/update-tutorials.dto';
 import {
+  ApiExtension,
   ApiInternalServerErrorResponse,
   ApiOperation,
+  ApiParam,
   ApiQuery,
   ApiResponse,
   ApiTags,
-  ApiBody,
-  ApiParam,
-  ApiExtension,
-  ApiBasicAuth,
 } from '@nestjs/swagger';
 
 @ApiTags('swagger.tutorials')
