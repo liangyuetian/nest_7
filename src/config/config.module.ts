@@ -1,11 +1,13 @@
 import { DynamicModule, Global, Module } from '@nestjs/common';
 import { ConfigModule as OConfigModule, ConfigService } from '@nestjs/config';
-import { mysqlConfig } from './database.config';
+import { databaseConfig } from './database.config';
+import { ApolloService } from './apollo/apollo.service';
+import { validate } from './env.validate';
 
 @Global()
 @Module({
   imports: [OConfigModule],
-  providers: [ConfigService],
+  providers: [ConfigService, ApolloService],
   exports: [OConfigModule, ConfigService],
 })
 export class ConfigModule {
@@ -18,7 +20,8 @@ export class ConfigModule {
         OConfigModule.forRoot({
           isGlobal: true,
           envFilePath: [`${__dirname}/${env}.env`],
-          load: [mysqlConfig],
+          load: [databaseConfig],
+          validate,
         }),
       ],
       exports: [OConfigModule],
