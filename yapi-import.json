@@ -1,0 +1,7 @@
+{
+  "type": "swagger",
+  "token": "555dad4a35e76e31742fd642b159071b14c907c84524204053728a57a8a67d7e",
+  "file": "http://localhost:8942/api-doc-json",
+  "merge": "good",
+  "server": ""
+}
