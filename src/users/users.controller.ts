@@ -1,6 +1,7 @@
-import { Controller, Get, HttpStatus, Response } from '@nestjs/common';
+import { Controller, Get, HttpStatus, Inject, Response } from '@nestjs/common';
 import { ApiHeader, ApiTags } from '@nestjs/swagger';
-import { ConfigService } from '@nestjs/config';
+import { ConfigService, ConfigType } from '@nestjs/config';
+import { databaseConfig } from '../config/database.config';
 
 @ApiTags('users')
 @ApiHeader({
@@ -9,10 +10,11 @@ import { ConfigService } from '@nestjs/config';
 })
 @Controller('users')
 export class UsersController {
-  constructor(private configService: ConfigService) {
-    // console.log(this.configService.get('base.port'));
-    // console.log(this.configService.get('mysql.password'));
-  }
+  constructor(
+    private configService: ConfigService,
+    @Inject(databaseConfig.KEY)
+    private dbConfig: ConfigType<typeof databaseConfig>,
+  ) {}
   @Get()
   getUser(@Response() res) {
     res.status(HttpStatus.OK).json({});

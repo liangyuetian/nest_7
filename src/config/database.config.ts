@@ -1,7 +1,7 @@
 import { registerAs } from '@nestjs/config';
 import { join } from 'path';
 
-export const mysqlConfig = registerAs('mysql', () => ({
+export const databaseConfig = registerAs('mysql', () => ({
   host: 'localhost',
   port: 3306,
   username: 'root',
