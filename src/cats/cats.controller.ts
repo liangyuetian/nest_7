@@ -7,6 +7,7 @@ import {
   HttpCode,
   HttpException,
   HttpStatus,
+  Ip,
   Next,
   Param,
   ParseIntPipe,
@@ -15,6 +16,7 @@ import {
   Query,
   Redirect,
   Req,
+  Res,
   Response,
   SetMetadata,
   UseGuards,
@@ -50,10 +52,21 @@ import {
 export class CatsController {
   constructor(private readonly connection: Connection) {}
   @Get()
-  async getHello(@Req() request: Request, @Response() response, @Next() next) {
-    response.status(HttpStatus.OK).json({
-      status: HttpStatus.OK,
-    });
+  getHello(
+    @Req() request: Request,
+    @Res({ passthrough: true }) response,
+    @Next() next,
+  ) {
+    // throw new HttpException(
+    //   {
+    //     status: HttpStatus.FORBIDDEN,
+    //     error: 'This is a custom message',
+    //   },
+    //   HttpStatus.FORBIDDEN,
+    // );
+
+    response.status(HttpStatus.OK);
+    return [];
   }
 
   @Get(':id')

@@ -90,3 +90,7 @@
 const app = await NestFactory.create(ApplicationModule);
 app.setGlobalPrefix('v1');
 ```
+
+# 相关文档
+
+* [tedis](https://tedis.silkjs.org/zh/guide/)
