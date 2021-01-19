@@ -12,7 +12,6 @@ export class HttpSuccessInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     return next.handle().pipe(
       map((data) => {
-        console.log(2);
         return {
           data,
         };
