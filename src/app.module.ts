@@ -12,6 +12,7 @@ import { AppService } from './app.service';
 import { SwaggerModule } from './swagger/swagger.module';
 import { StressTestApiModule } from './stress-test-api/stress-test-api.module';
 import { CoreModule } from './core/core.module';
+import { ActivityModule } from './activity/activity.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { CoreModule } from './core/core.module';
     SwaggerModule,
     StressTestApiModule,
     CoreModule,
+    ActivityModule,
   ],
   controllers: [AppController],
   providers: [AppService],
