@@ -133,7 +133,7 @@ export class CatsController {
   // }
 
   @Post('add')
-  async addTColumn(@Body() body: { s: string; k: string }) {
+  async addTColumn(@Body() body: { s: string; k: string }, @Res() res) {
     // const data = await this.connection.manager.find(T);
     const t = new T();
     // t.ID = 802;
@@ -141,8 +141,7 @@ export class CatsController {
     t.s = 's1';
     const data = await this.connection.manager.save(t);
 
-    // console.log(data);
-    return true;
+    res.status(HttpStatus.OK).send(data);
     // const data = await this.connection.query('select * from T limit 1');
   }
 }

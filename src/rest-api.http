@@ -34,8 +34,8 @@ POST http://localhost:8942/cats/add
 Content-Type: application/json
 
 {
-  "k": "k1",
-  "s": "s1"
+  "k": "k1_c",
+  "s": "s1_c"
 }
 
 ### 授权

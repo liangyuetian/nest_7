@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  VersionColumn,
+} from 'typeorm';
 
 @Entity({ name: 'T1' })
 export class T {
@@ -12,4 +19,17 @@ export class T {
 
   @Column('text')
   s: string;
+
+  @CreateDateColumn({
+    type: 'timestamp',
+  })
+  created_time: number;
+
+  @UpdateDateColumn({
+    type: 'timestamp',
+  })
+  updated_time: number;
+
+  @VersionColumn()
+  version: number;
 }
