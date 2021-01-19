@@ -1,0 +1,18 @@
+###
+GET http://localhost:8942/activity
+Accept: application/json
+
+###
+GET http://localhost:8942/activity/1
+Accept: application/json
+
+###
+POST http://localhost:8942/activity
+Content-Type: application/json
+
+{
+  "data": {
+    "case_type": "C"
+  }
+}
+

@@ -5,30 +5,46 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   VersionColumn,
+  Generated,
 } from 'typeorm';
 
-@Entity({ name: 'T1' })
+@Entity({ name: 'activity' })
 export class ActivityEntity {
   @PrimaryGeneratedColumn()
-  ID: number;
+  id: number;
 
   @Column({
-    length: 100,
+    type: 'uuid',
   })
-  k: string;
+  @Generated('uuid')
+  activity_id: string;
 
   @Column('text')
-  s: string;
+  activity_name: string;
+  @Column({
+    type: 'json',
+  })
+  activity_main: object;
+
+  @Column({
+    type: 'timestamp',
+  })
+  start_time: string;
+
+  @Column({
+    type: 'timestamp',
+  })
+  end_time: string;
 
   @CreateDateColumn({
     type: 'timestamp',
   })
-  created_time: number;
+  created_time: string;
 
   @UpdateDateColumn({
     type: 'timestamp',
   })
-  updated_time: number;
+  updated_time: string;
 
   @VersionColumn()
   version: number;

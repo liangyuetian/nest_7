@@ -8,5 +8,5 @@ export const databaseConfig = registerAs('mysql', () => ({
   password: '123456',
   database: 'l',
   entities: [join(__dirname + '/../**/*.entity{.ts,.js}')],
-  synchronize: false,
+  synchronize: true,
 }));
