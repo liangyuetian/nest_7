@@ -1,28 +1,32 @@
-import { DynamicModule, Global, Module } from '@nestjs/common';
-import { DatabaseController } from './database.controller';
+import { Global, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { databaseConfig } from '../config/database.config';
+import { ConfigService } from '@nestjs/config';
+import { ConfigModule } from '../config/config.module';
+import { DatabaseService } from './database.service';
+import { AppConfigCache } from '../config/interface';
+import * as Entity from './entity';
 
-@Module({})
-export class DatabaseModule {
-  static forRoot(): DynamicModule {
-    const config = databaseConfig();
-    return {
-      module: DatabaseModule,
-      imports: [
-        TypeOrmModule.forRoot({
-          type: 'mysql',
-          host: config.host,
-          port: config.port,
-          username: config.username,
-          password: config.password,
-          database: config.database,
-          // entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-          entities: config.entities,
-          synchronize: config.synchronize,
-        }),
-      ],
-      exports: [TypeOrmModule],
-    };
-  }
-}
+@Global()
+@Module({
+  imports: [
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule.forRoot()],
+      inject: [ConfigService],
+      useFactory: (config: ConfigService<AppConfigCache>) => ({
+        name: 'default',
+        type: 'mysql',
+        host: config.get('DATABASE_HOST'),
+        port: +config.get<number>('DATABASE_PORT'),
+        username: config.get('DATABASE_USER'),
+        password: config.get('DATABASE_PWD'),
+        database: config.get('DATABASE_LIB'),
+        entities: Object.values(Entity),
+        autoLoadEntities: true,
+        synchronize: false,
+      }),
+    }),
+  ],
+  providers: [DatabaseService],
+  exports: [DatabaseService],
+})
+export class DatabaseModule {}
