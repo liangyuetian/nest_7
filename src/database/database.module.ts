@@ -22,7 +22,7 @@ import * as Entity from './entity';
         database: config.get('DATABASE_LIB'),
         entities: Object.values(Entity),
         autoLoadEntities: true,
-        synchronize: false,
+        synchronize: true,
       }),
     }),
   ],

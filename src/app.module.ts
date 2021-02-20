@@ -18,7 +18,7 @@ import { ActivityModule } from './activity/activity.module';
   imports: [
     CommonModule,
     ConfigModule.forRoot(),
-    DatabaseModule.forRoot(),
+    DatabaseModule,
     AuthModule,
     UsersModule,
     CatsModule,
