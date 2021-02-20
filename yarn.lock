@@ -1277,6 +1277,13 @@
   resolved "https://registry.npm.taobao.org/@types/node/download/@types/node-10.17.50.tgz?cache=0&sync_timestamp=1608755208423&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fnode%2Fdownload%2F%40types%2Fnode-10.17.50.tgz#7a20902af591282aa9176baefc37d4372131c32d"
   integrity sha1-eiCQKvWRKCqpF2uu/DfUNyExwy0=
 
+"@types/nodemailer@^6.4.0":
+  version "6.4.0"
+  resolved "https://registry.npm.taobao.org/@types/nodemailer/download/@types/nodemailer-6.4.0.tgz#d8c039be3ed685c4719a026455555be82c124b74"
+  integrity sha1-2MA5vj7WhcRxmgJkVVVb6CwSS3Q=
+  dependencies:
+    "@types/node" "*"
+
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
   resolved "https://registry.npm.taobao.org/@types/normalize-package-data/download/@types/normalize-package-data-2.4.0.tgz?cache=0&sync_timestamp=1605054783883&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fnormalize-package-data%2Fdownload%2F%40types%2Fnormalize-package-data-2.4.0.tgz#e486d0d97396d79beedd0a6e33f4534ff6b4973e"
@@ -6394,6 +6401,11 @@ node-releases@^1.1.67:
   version "1.1.67"
   resolved "https://registry.npm.taobao.org/node-releases/download/node-releases-1.1.67.tgz?cache=0&sync_timestamp=1605581282886&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fnode-releases%2Fdownload%2Fnode-releases-1.1.67.tgz#28ebfcccd0baa6aad8e8d4d8fe4cbc49ae239c12"
   integrity sha1-KOv8zNC6pqrY6NTY/ky8Sa4jnBI=
+
+nodemailer@^6.4.18:
+  version "6.4.18"
+  resolved "https://registry.npm.taobao.org/nodemailer/download/nodemailer-6.4.18.tgz#2788c85792844fc17befda019031609017f4b9a1"
+  integrity sha1-J4jIV5KET8F779oBkDFgkBf0uaE=
 
 normalize-package-data@^2.3.2, normalize-package-data@^2.5.0:
   version "2.5.0"
