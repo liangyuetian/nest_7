@@ -1,0 +1,23 @@
+### 顺序耗时
+POST {{host}}/test-one-api/order
+Content-Type: application/json
+
+{
+    "url": "http://172.17.30.73:9513/cats",
+    "method": "get",
+    "number": 300,
+    "body": {},
+    "params": {}
+}
+
+###
+POST {{host}}/test-one-api/order
+Content-Type: application/json
+
+{
+  "url": "http://172.17.30.73:4001/cats",
+  "method": "get",
+  "number": 300,
+  "body": {},
+  "params": {}
+}

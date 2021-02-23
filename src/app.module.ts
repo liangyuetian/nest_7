@@ -13,6 +13,7 @@ import { SwaggerModule } from './swagger/swagger.module';
 import { StressTestApiModule } from './stress-test-api/stress-test-api.module';
 import { CoreModule } from './core/core.module';
 import { ActivityModule } from './activity/activity.module';
+import { TestOneApiModule } from './test-one-api/test-one-api.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { ActivityModule } from './activity/activity.module';
     StressTestApiModule,
     CoreModule,
     ActivityModule,
+    TestOneApiModule,
   ],
   controllers: [AppController],
   providers: [AppService],
