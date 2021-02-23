@@ -1,7 +1,7 @@
 import { HttpService, Injectable } from '@nestjs/common';
-import { of } from 'rxjs';
+import { forkJoin, of } from 'rxjs';
 import { TestBodyDto } from './dto/test-body.dto';
-import { delayWhen, expand, last, map, take } from 'rxjs/operators';
+import { catchError, delayWhen, expand, last, map, take } from 'rxjs/operators';
 
 @Injectable()
 export class TestOneApiService {
@@ -27,21 +27,32 @@ export class TestOneApiService {
           averageTime: `平均耗时：${Math.ceil(allTime / data.number)}ms`,
         };
       }),
+      catchError(() => of('error')),
     );
   }
   concurrent(data: TestBodyDto) {
-    return of(Date.now()).pipe(
-      expand((time) => of(time).pipe(delayWhen(() => this.getHttp$(data)))),
-      take(data.number),
-      last(),
-      map((time) => {
+    const time = Date.now();
+    const list = Array.from({ length: data.number }, () =>
+      this.getHttp$(data).pipe(
+        map(() => {
+          return Date.now() - time;
+        }),
+      ),
+    );
+    return forkJoin(list).pipe(
+      map((l) => {
+        console.log(l.map((t) => t + 'ms'));
         const allTime = Date.now() - time;
+        const average = l.reduce((total, t) => {
+          return (total += t);
+        }, 0);
         return {
           count: `循环次数：${data.number}`,
           totalTime: `总耗时：${allTime / 1000}s`,
-          averageTime: `平均耗时：${Math.ceil(allTime / data.number)}ms`,
+          averageTime: `平均耗时：${Math.ceil(average / l.length)}ms`,
         };
       }),
+      catchError(() => of('error')),
     );
   }
 }
