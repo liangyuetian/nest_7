@@ -7,7 +7,7 @@ export class EmailService {
   testAccount: TestAccount;
   static createTransport = createTransport;
   constructor() {
-    this.sendMail({});
+    // this.sendMail({});
   }
 
   async getTestAccount() {
