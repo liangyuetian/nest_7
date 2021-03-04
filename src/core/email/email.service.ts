@@ -33,7 +33,7 @@ export class EmailService {
     return transporter
       .sendMail({
         from: `"${this.testAccount.user}" ${this.testAccount.user}`,
-        to: 'wangchuang@ymt360.com',
+        to: 'pt_liangyue@outlook.com',
         subject: 'nodemailer',
         html: '<h1>测试 nodemailer</h1>',
       })
