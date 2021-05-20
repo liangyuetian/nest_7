@@ -4,7 +4,7 @@ import { ConfigService } from '@nestjs/config';
 import { ConfigModule } from '../config/config.module';
 import { DatabaseService } from './database.service';
 import { AppConfigCache } from '../config/interface';
-import * as Entity from './entity';
+// import * as Entity from './entity';
 
 @Global()
 @Module({
@@ -20,7 +20,7 @@ import * as Entity from './entity';
         username: config.get('DATABASE_USER'),
         password: config.get('DATABASE_PWD'),
         database: config.get('DATABASE_LIB'),
-        entities: Object.values(Entity),
+        entities: Object.values({}),
         autoLoadEntities: true,
         synchronize: true,
       }),

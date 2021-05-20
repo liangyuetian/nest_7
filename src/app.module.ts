@@ -14,21 +14,23 @@ import { StressTestApiModule } from './stress-test-api/stress-test-api.module';
 import { CoreModule } from './core/core.module';
 import { ActivityModule } from './activity/activity.module';
 import { TestOneApiModule } from './test-one-api/test-one-api.module';
+import { BinaryModule } from './binary/binary.module';
 
 @Module({
   imports: [
     CommonModule,
     ConfigModule.forRoot(),
-    DatabaseModule,
+    // DatabaseModule,
     AuthModule,
     UsersModule,
-    CatsModule,
     RedirectUriModule,
     SwaggerModule,
     StressTestApiModule,
     CoreModule,
-    ActivityModule,
+    // CatsModule,
+    // ActivityModule,
     TestOneApiModule,
+    BinaryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
