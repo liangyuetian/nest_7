@@ -10,6 +10,10 @@
       {
         "include": "**/*.graphql",
         "watchAssets": true
+      },
+      {
+        "include": "**/*.(jpg|png|gif)",
+        "watchAssets": true
       }
     ],
     "plugins": [
