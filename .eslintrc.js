@@ -45,5 +45,6 @@ module.exports = {
         extendDefaults: true,
       },
     ],
+    '@typescript-eslint/no-var-requires': 'off'
   },
 };

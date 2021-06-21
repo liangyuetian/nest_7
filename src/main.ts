@@ -11,6 +11,8 @@ import { AllExceptionsFilter } from './core/filter';
 // const apiSpec = require('swagger.json');
 import * as swStats from 'swagger-stats';
 
+declare const module: any;
+
 async function bootstrap() {
   const fastifyAdapter = new FastifyAdapter();
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -37,11 +39,15 @@ async function bootstrap() {
   SwaggerModule.setup('api-doc', app, document);
 
   const configService = app.get(ConfigService);
-  const port = configService.get('PORT');
-
+  const port = configService.get('PORT') || 8942;
   await app.listen(port);
   console.log(`服务地址：http://localhost:${port}`);
   console.log(`api文档地址：http://localhost:${port}/api-doc`);
+
+  if (module.hot) {
+    module.hot.accept();
+    module.hot.dispose(() => app.close());
+  }
 }
 
 bootstrap();

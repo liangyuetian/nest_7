@@ -1,4 +1,4 @@
-import { UpdateNoPropertyDto } from './update-no-property-dto';
+import { UpdateNoPropertyDto } from './update-no-property.dto';
 
 describe('UpdateNoPropertyDto', () => {
   it('should be defined', () => {
